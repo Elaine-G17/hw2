@@ -267,15 +267,14 @@ puts ""
 # Query the movies data and loop through the results to display the movies output.
 # TODO!
 movies = Movie.where({"studio_id" => warner_bros["id"]})
-warner_bros = Studio.find_by({"name" => "Warner Bros."})
 for movie in movies
-    # read each contact row's first_name and last_name columns
     title = movie["title"]
     year = movie["year_released"]
     rating = movie["rated"]
-    # display the first_name and last_name
-    puts "#{title} #{year} #{rating} #{studio["name"]}" 
-  end
+    studio = Studio.find_by({"id" => movie["studio_id"]})
+    studio_name = studio["name"]
+    puts "#{title} #{year} #{rating} #{studio_name}" 
+end
 
 # Prints a header for the cast output
 puts ""
@@ -285,3 +284,32 @@ puts ""
 
 # Query the cast data and loop through the results to display the cast output for each movie.
 # TODO!
+roles = Role.where({"movie_id" => batman_begins["id"]})
+for role in roles
+  movie = Movie.find_by({"id" => role["movie_id"]})
+  movie_name = movie["title"]
+  actor = Actor.find_by({"id" => role["actor_id"]})
+  actor_name = actor["name"]
+  character_name = role["character_name"]
+  puts "#{movie_name} #{actor_name} #{character_name}" 
+end
+
+roles = Role.where({"movie_id" => the_dark_knight["id"]})
+for role in roles
+  movie = Movie.find_by({"id" => role["movie_id"]})
+  movie_name = movie["title"]
+  actor = Actor.find_by({"id" => role["actor_id"]})
+  actor_name = actor["name"]
+  character_name = role["character_name"]
+  puts "#{movie_name} #{actor_name} #{character_name}" 
+end
+
+roles = Role.where({"movie_id" => the_dark_knight_rises["id"]})
+for role in roles
+  movie = Movie.find_by({"id" => role["movie_id"]})
+  movie_name = movie["title"]
+  actor = Actor.find_by({"id" => role["actor_id"]})
+  actor_name = actor["name"]
+  character_name = role["character_name"]
+  puts "#{movie_name} #{actor_name} #{character_name}" 
+end
